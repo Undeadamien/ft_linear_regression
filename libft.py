@@ -27,3 +27,14 @@ def load_csv() -> list[tuple[float, float]]:
     except Exception as e:
         print(f"{e} {type(e)}")
     return data
+
+
+def prompt_mileage() -> float:
+    while True:
+        value = input("Mileage: ")
+        try:
+            value = float(value)
+            break
+        except:
+            continue
+    return value

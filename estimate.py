@@ -5,17 +5,6 @@ import json
 from libft import *
 
 
-def prompt_mileage() -> float:
-    while True:
-        value = input("Mileage: ")
-        try:
-            value = float(value)
-            break
-        except:
-            continue
-    return value
-
-
 def main():
     with open("thetas.json", "r") as file:
         t = json.load(file)
