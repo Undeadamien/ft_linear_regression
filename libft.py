@@ -14,18 +14,12 @@ STD_KM: str = "std_km"
 
 def load_csv() -> list[tuple[float, float]]:
     data = []
-    try:
-        with open(FILE_DATA, "r") as file:
-            reader = csv.reader(file)
-            next(reader)
+    with open(FILE_DATA, "r") as file:
+        reader = list(csv.reader(file))
+        if reader[0] == ["km", "price"]:
+            reader.pop(0)
             for km, price in reader:
-                try:
-                    data.append([float(km), float(price)])
-                except Exception as e:
-                    print(f"{e} {type(e)}")
-                    continue
-    except Exception as e:
-        print(f"{e} {type(e)}")
+                data.append([float(km), float(price)])
     return data
 
 
