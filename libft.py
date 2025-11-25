@@ -21,14 +21,3 @@ def load_csv() -> list[tuple[float, float]]:
             for km, price in reader:
                 data.append([float(km), float(price)])
     return data
-
-
-def prompt_mileage() -> float:
-    while True:
-        value = input("Mileage: ")
-        try:
-            value = float(value)
-            break
-        except:
-            continue
-    return value

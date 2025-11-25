@@ -5,20 +5,32 @@ import json
 from libft import *
 
 
+def prompt_mileage() -> float:
+    while True:
+        value = input("Mileage: ")
+        try:
+            value = float(value)
+            break
+        except:
+            continue
+    return value
+
+
+def load_model():
+    default = {THETA_0: 0.0, THETA_1: 0.0, MEAN_KM: 0.0, STD_KM: 1.0}
+    try:
+        with open(FILE_THETAS, "r") as file:
+            data = json.load(file)
+            return {**default, **data}
+    except Exception:
+        return default
+
+
 def main():
-    with open("thetas.json", "r") as file:
-        t = json.load(file)
-
-    t0: float = t[THETA_0]
-    t1: float = t[THETA_1]
-    mean_km: float = t[MEAN_KM]
-    std_km: float = t[STD_KM]
-
+    model = load_model()
     mileage = prompt_mileage()
-
-    x = (mileage - mean_km) / std_km
-
-    price = t0 + t1 * x
+    x = (mileage - model[MEAN_KM]) / model[STD_KM]
+    price = model[THETA_0] + model[THETA_1] * x
     print(f"Estimated price : {price:.2f}")
 
 
