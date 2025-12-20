@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-import json
-
 from libft import *
 
 
@@ -14,16 +12,6 @@ def prompt_mileage() -> float:
         except:
             continue
     return value
-
-
-def load_model():
-    default = {THETA_0: 0.0, THETA_1: 0.0, MEAN_KM: 0.0, STD_KM: 1.0}
-    try:
-        with open(FILE_THETAS, "r") as file:
-            data = json.load(file)
-            return {**default, **data}
-    except Exception:
-        return default
 
 
 def main():

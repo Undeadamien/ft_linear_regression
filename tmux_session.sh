@@ -23,9 +23,9 @@ tmux new-session -d -s "$NAME_SESSION"
 tmux set-option -t "$NAME_SESSION" base-index 1
 tmux set-option -t "$NAME_SESSION" pane-base-index 1
 
-tmux set-hook -t "$NAME_SESSION" after-new-window "send-keys \"source $(pwd)/.venv/bin/activate\" Enter "clear" Enter"
-tmux set-hook -t "$NAME_SESSION" after-split-window "send-keys \"source $(pwd)/.venv/bin/activate\" Enter "clear" Enter"
-tmux send-keys -t "$NAME_SESSION:1.1" "source $(pwd)/.venv/bin/activate" Enter "clear" Enter
+tmux set-hook -t "$NAME_SESSION" after-new-window "send-keys \"set -o vi; source $(pwd)/.venv/bin/activate\" Enter "clear" Enter"
+tmux set-hook -t "$NAME_SESSION" after-split-window "send-keys \"set -o vi; source $(pwd)/.venv/bin/activate\" Enter "clear" Enter"
+tmux send-keys -t "$NAME_SESSION:1.1" "set -o vi; source $(pwd)/.venv/bin/activate" Enter "clear" Enter
 
 tmux send-keys -t "$NAME_SESSION:1.1" "$EDITOR -O *.py" Enter
 tmux new-window
